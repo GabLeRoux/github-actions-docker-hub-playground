@@ -6,9 +6,15 @@ This s just a playground try https://github.com/docker/build-push-action/
 
 [`howdoi`](https://github.com/gleitz/howdoi)
 
-I've also experimented with multi-stage build to compare image build size result.
+## Multi-stage build vs Single stage build
 
-multi-stage build: 83.21 MB
-single stage: 356.84 MB
+I tried both solutions and since `howdoi` must have `libxslt.so.1` shared library in place. Here's the result so far:
 
-`howdoi` must have `libxslt.so.1` shared library in place so
+|multi-stage build|single stage|
+|-----------------|------------|
+|83.21 MB         |356.84 MB   |
+
+
+## License
+
+[MIT](LICENSE.md) © [Gabriel Le Breton](https://gableroux.com)
