@@ -18,7 +18,9 @@ I tried both solutions and since `howdoi` must have `libxslt.so.1` shared librar
 
 |multi-stage build|single stage|
 |-----------------|------------|
-|83.21 MB         |356.84 MB   |
+|83.21 MB         |81.6 MB     |
+
+In the case of `howdoi`, it looks like the multi-stage build is not the best solution.
 
 ## License
 
