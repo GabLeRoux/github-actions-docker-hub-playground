@@ -1,4 +1,4 @@
-name: ci
+name: Update docker hub description
 
 on:
   push:
