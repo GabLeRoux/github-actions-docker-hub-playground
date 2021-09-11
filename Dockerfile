@@ -1,18 +1,26 @@
-FROM python:3.9-alpine
-
-COPY requirements.txt ./
+FROM python:3.9-alpine as builder
 
 RUN apk add --update --no-cache \
-    --virtual .build-deps \
     make \
     gcc \
     g++ \
-    python3-dev \
-    && apk add --no-cache \
-        libxml2-dev \
-        libxslt-dev \
-    && pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
-    && apk del .build-deps
+    libxml2-dev \
+    libxslt-dev \
+    python3-dev
+
+COPY ./requirements.txt .
+RUN pip wheel --no-cache-dir --no-deps --wheel-dir /usr/src/app/wheels -r requirements.txt
+
+FROM python:3.9-alpine as runtime
+
+RUN apk add --update --no-cache \
+    libxml2-dev \
+    libxslt-dev
+
+COPY --from=builder /usr/src/app/wheels /wheels
+COPY --from=builder requirements.txt .
+
+RUN pip install --upgrade --no-cache pip \
+  && pip install --no-cache /wheels/*
 
 CMD ["/usr/local/bin/howdoi"]

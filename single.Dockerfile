@@ -12,7 +12,7 @@ RUN apk add --update --no-cache \
         libxml2-dev \
         libxslt-dev \
     && pip install --upgrade pip \
-    && pip install --no-cache-dir -r requirements.txt
+    && pip install --no-cache-dir -r requirements.txt \
     && apk del .build-deps
 
 CMD ["/usr/local/bin/howdoi"]
