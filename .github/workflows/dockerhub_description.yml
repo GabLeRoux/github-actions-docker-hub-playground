@@ -29,3 +29,4 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
           repository: gableroux/howdoi
+          readme-filepath: './ReadMe.md'
